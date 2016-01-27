@@ -17,6 +17,7 @@
 package me.priyesh.bridge
 
 import me.priyesh.bridge.models.Device
+import me.priyesh.bridge.parsing.AdbParser
 import org.scalatest.{FunSuite, Matchers}
 
 class AdbParserTest extends FunSuite with Matchers {

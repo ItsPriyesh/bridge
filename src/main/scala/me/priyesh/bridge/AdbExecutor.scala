@@ -16,6 +16,12 @@
 
 package me.priyesh.bridge
 
-object Main {
+import sys.process._
+
+object AdbExecutor {
+
+  private val ADB = "adb"
+
+  def run(command: String): Option[String] = if ((ADB !) == 0) Some(s"$ADB command" !!) else None
 
 }

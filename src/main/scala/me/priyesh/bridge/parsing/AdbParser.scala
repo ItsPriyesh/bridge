@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.priyesh.bridge
+package me.priyesh.bridge.parsing
 
 import me.priyesh.bridge.models.Device
 
