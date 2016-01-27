@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package me.priyesh.bridge.models
+package me.priyesh.bridge
 
-class Device(val serialNumber: String, val state: String) {
+object Main {
 
 }
