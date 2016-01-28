@@ -22,7 +22,7 @@ object AdbParser {
 
   val DevicePattern = "(.*)\t([a-zA-z]+)".r
 
-  def parseAdbDevices(string: String): List[Device] = string.trim.split("\n").toList.drop(1) map {
+  def parseDevices(string: String): List[Device] = string.trim.split("\n").toList.drop(1) map {
     case DevicePattern(serialNumber, state) => new Device(serialNumber, state)
   }
 }

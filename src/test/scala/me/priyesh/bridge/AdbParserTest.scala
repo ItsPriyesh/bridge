@@ -27,7 +27,7 @@ class AdbParserTest extends FunSuite with Matchers {
     val device2 = new Device("07f37d0d00fd6b40", "device")
     val adbDevicesOutput = s"List of devices attached\n${device1.serialNumber}\t${device1.state}\n${device2.serialNumber}\t${device2.state}\n"
 
-    val devices = AdbParser.parseAdbDevices(adbDevicesOutput)
+    val devices = AdbParser.parseDevices(adbDevicesOutput)
     assert(devices.size == 2)
     assert(devices.contains(device1))
     assert(devices.contains(device2))
@@ -35,7 +35,7 @@ class AdbParserTest extends FunSuite with Matchers {
 
   test("Parse adb devices, with no devices connected") {
     val adbDevicesOutput = "List of devices attached\n"
-    val devices = AdbParser.parseAdbDevices(adbDevicesOutput)
+    val devices = AdbParser.parseDevices(adbDevicesOutput)
     assert(devices.isEmpty)
   }
 }

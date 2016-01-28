@@ -22,12 +22,9 @@ import me.priyesh.bridge.parsing.AdbParser
 object Bridge {
 
   def devices(): List[Device] = {
-    val output = AdbExecutor.run("devices")
-    if (output.isDefined) {
-      AdbParser.parseAdbDevices(output.get)
-    } else {
-      print("ADB not found. Ensure that ADB is installed and in your PATH.")
-      List()
+    AdbExecutor.run("devices") match {
+      case Some(output) => AdbParser.parseDevices(output)
+      case None => List()
     }
   }
 
