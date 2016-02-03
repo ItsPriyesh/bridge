@@ -14,26 +14,12 @@
  * limitations under the License.
  */
 
-package me.priyesh.bridge.parsing
+package me.priyesh.bridge
 
-import java.io.File
+import org.scalatest.{Matchers, FunSuite}
 
-import me.priyesh.bridge.models.Device
+class BridgeTest extends FunSuite with Matchers {
 
-object AdbParser {
+  val Bridge = new Bridge(new AdbExecutor(getClass.getResource("/platform-tools/adb").getPath))
 
-  val DevicePattern = "(.*)\t([a-zA-z]+)".r
-  val FileNotFoundPattern = "remote object '.*' does not exist".r
-
-  def parseDevices(string: String): List[Device] = string.trim.split("\n").toList.drop(1) map {
-    case DevicePattern(serialNumber, state) => new Device(serialNumber, state)
-  }
-
-  def parsePull(string: String): List[File] = {
-    List()
-   /* string.map {
-      case FileNotFoundPattern => List()
-      case _ => List()
-    }*/
-  }
 }

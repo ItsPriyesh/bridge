@@ -18,16 +18,9 @@ package me.priyesh.bridge
 
 import scala.sys.process._
 
-object AdbExecutor {
-
-  private val ADB = "adb"
-
-  def run(command: String): Option[String] = {
-    if ((ADB !) == 0) {
-      Some(s"$ADB $command" !!)
-    } else {
-      print("ADB not found. Ensure that ADB is installed and in your PATH.")
-      None
-    }
+class AdbExecutor(val adb: String = "adb") {
+  def run(command: String): Option[String] = adb ! match {
+    case 0 | 1 => Some(s"$adb $command" !!)
+    case _ => None
   }
 }

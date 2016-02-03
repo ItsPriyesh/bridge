@@ -16,16 +16,23 @@
 
 package me.priyesh.bridge
 
+import java.io.File
+
 import me.priyesh.bridge.models.Device
 import me.priyesh.bridge.parsing.AdbParser
 
-object Bridge {
+class Bridge(val executor: AdbExecutor = new AdbExecutor()) {
 
-  def devices(): List[Device] = {
-    AdbExecutor.run("devices") match {
-      case Some(output) => AdbParser.parseDevices(output)
-      case None => List()
+  def devices(): Option[List[Device]] = {
+    executor.run("devices") match {
+      case Some(output) => Some(AdbParser.parseDevices(output))
+      case None => None
     }
+  }
+
+  def pull(remotePath: String, localPath: String = ""): List[File] = {
+
+    ???
   }
 
 }
