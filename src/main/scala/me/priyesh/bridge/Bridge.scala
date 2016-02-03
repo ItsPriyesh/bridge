@@ -23,12 +23,7 @@ import me.priyesh.bridge.parsing.AdbParser
 
 class Bridge(val executor: AdbExecutor = new AdbExecutor()) {
 
-  def devices(): Option[List[Device]] = {
-    executor.run("devices") match {
-      case Some(output) => Some(AdbParser.parseDevices(output))
-      case None => None
-    }
-  }
+  def devices(): Option[List[Device]] = executor.run("devices").map(AdbParser.parseDevices)
 
   def pull(remotePath: String, localPath: String = ""): List[File] = {
 

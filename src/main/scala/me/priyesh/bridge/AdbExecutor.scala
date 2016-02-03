@@ -17,10 +17,16 @@
 package me.priyesh.bridge
 
 import scala.sys.process._
+import scala.util.{Failure, Success, Try}
 
 class AdbExecutor(val adb: String = "adb") {
-  def run(command: String): Option[String] = adb ! match {
-    case 0 | 1 => Some(s"$adb $command" !!)
-    case _ => None
+
+  private val HappyExitCodes = Set(0, 1)
+
+  def run(command: String): Option[String] = Try(adb !) match {
+    case Failure(exception) => None
+    case Success(exitCode) =>
+      if (HappyExitCodes contains exitCode) Some(s"$adb $command" !!)
+      else None
   }
 }

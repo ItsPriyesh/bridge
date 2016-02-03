@@ -20,6 +20,14 @@ import org.scalatest.{Matchers, FunSuite}
 
 class BridgeTest extends FunSuite with Matchers {
 
-  val Bridge = new Bridge(new AdbExecutor(getClass.getResource("/platform-tools/adb").getPath))
+  val ValidAdb = getClass.getResource("/platform-tools/adb").getPath
+  val InvalidAdb = "some_invalid_stuff"
 
+  test("Test ADB devices") {
+    val validBridge = new Bridge(new AdbExecutor(ValidAdb))
+    val invalidBridge = new Bridge(new AdbExecutor(InvalidAdb))
+
+    assert(validBridge devices() isDefined)
+    assert(invalidBridge devices() isEmpty)
+  }
 }

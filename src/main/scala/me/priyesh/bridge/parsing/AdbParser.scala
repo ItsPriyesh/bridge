@@ -16,8 +16,6 @@
 
 package me.priyesh.bridge.parsing
 
-import java.io.File
-
 import me.priyesh.bridge.models.Device
 
 object AdbParser {
@@ -29,11 +27,10 @@ object AdbParser {
     case DevicePattern(serialNumber, state) => new Device(serialNumber, state)
   }
 
-  def parsePull(string: String): List[File] = {
-    List()
-   /* string.map {
+ /* def parsePull(string: String): List[File] = {
+    string.map {
       case FileNotFoundPattern => List()
       case _ => List()
-    }*/
-  }
+    }
+  }*/
 }
