@@ -38,4 +38,8 @@ class AdbParserTest extends FunSuite with Matchers {
     val devices = AdbParser.parseDevices(adbDevicesOutput)
     assert(devices.isEmpty)
   }
+
+  test("Parse adb pull, non existent remote file") {
+    val adbPullOutput = "remote object 'sfdfjjkd' does not exist"
+  }
 }

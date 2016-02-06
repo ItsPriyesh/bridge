@@ -25,9 +25,8 @@ class Bridge(val executor: AdbExecutor = new AdbExecutor()) {
 
   def devices(): Option[List[Device]] = executor.run("devices").map(AdbParser.parseDevices)
 
-  def pull(remotePath: String, localPath: String = ""): List[File] = {
+  def pull(remotePath: String, localPath: String = ""): List[File] = ???
 
-    ???
-  }
+  def push(files: List[File])
 
 }
